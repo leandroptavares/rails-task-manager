@@ -1,0 +1,11 @@
+<h1>My Tasks</h1>
+
+<% @tasks.each do |t| %>
+  <p><input type="checkbox" id= <% t.title %> name= <% t.title %> <% if t.completed %> checked <% end %>/>
+  <label for= <% t.title %>><%= link_to t.title , task_path(t) %></label> •
+  <%= link_to "🗑️",
+  task_path(t),
+  data: {turbo_method: :delete, turbo_confirm: "Delete #{t.title}?"}
+%></p>
+<% end %>
+<%= link_to "Add a new task" , task_new_path %>
